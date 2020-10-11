@@ -1,0 +1,51 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="ticket-1.0.0" author="Janus Chung" failOnError="true">
+        <comment>create table to store user information </comment>
+        <createTable tableName="USER" schemaName="support_system">
+            <column name="ID" type="BIGINT" remarks="Primary key">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="CREATED_ON" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP" remarks="When the entry was created">
+                <constraints nullable="true"/>
+            </column>
+            <column name="CREATED_BY" type="BIGINT" remarks="Id of the user that created the entry">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFIED_BY" type="BIGINT" remarks="Id of the user that last modified the record">
+            </column>
+            <column name="LAST_MODIFIED" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP" remarks="When the entry was modified">
+                <constraints nullable="true"/>
+            </column>
+            <column name="USERNAME" type="VARCHAR(50)" remarks="Username">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PASSWORD" type="VARCHAR(50)" remarks="Password in hash format">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMAIL" type="VARCHAR(50)" remarks="User email">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FIRST_NAME" type="VARCHAR(50)" remarks="First name">
+                <constraints nullable="true"/>
+            </column>
+            <column name="LAST_NAME" type="VARCHAR(50)" remarks="Last name">
+                <constraints nullable="true"/>
+            </column>
+            <column name="PHONE" type="VARCHAR(50)" remarks="Phone number">
+                <constraints nullable="true"/>
+            </column>
+            <column name="ENABLED_FL" type="TINYINT" remarks="User enable status, default as 1" defaultValue="1">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_LOGIN" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP" remarks="When the entry was last logged in">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="USER"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

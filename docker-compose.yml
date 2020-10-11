@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  db:
+    container_name: support_system
+    image: mysql/mysql-server:8.0.21
+    environment:
+        MYSQL_ROOT_PASSWORD: "password"
+    restart: always
+    volumes:
+      - ./sql-scripts:/docker-entrypoint-initdb.d/
+    ports:
+      - "3306:3306/tcp"

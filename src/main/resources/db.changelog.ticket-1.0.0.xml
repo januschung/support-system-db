@@ -1,0 +1,44 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="ticket-1.0.0" author="Janus Chung" failOnError="true">
+        <comment>create table to store ticket information </comment>
+        <createTable tableName="TICKET" schemaName="support_system">
+            <column name="ID" type="BIGINT" remarks="Primary key">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="CREATED_ON" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP" remarks="When the entry was created">
+                <constraints nullable="true" />
+            </column>
+            <column name="CREATED_BY" type="BIGINT" remarks="Id of the user that created the entry">
+                <constraints nullable="false" foreignKeyName="FK_TICKET_CREATED_BY" references="USER(ID)"/>
+            </column>
+            <column name="MODIFIED_BY" type="BIGINT" remarks="Id of the user that last modified the record">
+                <constraints nullable="false" foreignKeyName="FK_TICKET_MODIFIED_BY" references="USER(ID)"/>
+            </column>
+            <column name="LAST_MODIFIED" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP" remarks="When the entry was modified">
+                <constraints nullable="true"/>
+            </column>
+            <column name="ASSIGNEE_ID" type="BIGINT" remarks="Id of the user that is assigned to">
+                <constraints nullable="false" foreignKeyName="FK_TICKET_ASSIGNEE_ID" references="USER(ID)"/>
+            </column>
+            <column name="CLIENT_ID" type="BIGINT" remarks="Id of the client">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="BIGINT" remarks="Ticket description">
+                <constraints nullable="true"/>
+            </column>
+            <column name="TICKET_STATUS_ID" type="BIGINT" remarks="Id of status, default as 1 (new)" defaultValue="1">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RESOLUTION_ID" type="BIGINT" remarks="Id of resolution, default as 1 (unresolved)" defaultValue="1">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+        <rollback>
+            <dropTable tableName="TICKET"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
