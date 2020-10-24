@@ -26,7 +26,7 @@
             <column name="CLIENT_ID" type="BIGINT" remarks="Id of the client">
                 <constraints nullable="false"/>
             </column>
-            <column name="DESCRIPTION" type="BIGINT" remarks="Ticket description">
+            <column name="DESCRIPTION" type="VARCHAR(1000)" remarks="Ticket description">
                 <constraints nullable="true"/>
             </column>
             <column name="TICKET_STATUS_ID" type="BIGINT" remarks="Id of status, default as 1 (new)" defaultValue="1">
