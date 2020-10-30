@@ -22,6 +22,6 @@ jobs:
       with:
         java-version: 15
     - name: Bring up mysql
-      run: sudo systemctl start mysql.service && mysql -uroot < docker/sql-scripts/create_dbs.sql
+      run: sudo systemctl start mysql.service && mysql -uroot -proot < docker/sql-scripts/create_dbs.sql
     - name: Build with Maven
       run: mvn clean install
