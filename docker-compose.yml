@@ -14,3 +14,5 @@ services:
       - ./docker/cnf:/etc/my.cnf.d/my.cnf
     ports:
       - "3306:3306/tcp"
+    expose:
+      - "3306"
