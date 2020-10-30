@@ -8,7 +8,6 @@ CREATE USER 'liquibase'@'%' IDENTIFIED BY 'jare';
 
 GRANT SELECT,INSERT,UPDATE,EXECUTE ON support_system.* TO 'jare'@'localhost';
 GRANT SELECT,INSERT,UPDATE,EXECUTE ON support_system.* TO 'jare'@'%';
-GRANT ALL ON *.* to 'jare'@'%' IDENTIFIED BY 'jare';
 
 GRANT SUPER ON *.* TO 'liquibase'@'localhost';
 GRANT SUPER ON *.* TO 'liquibase'@'%';
