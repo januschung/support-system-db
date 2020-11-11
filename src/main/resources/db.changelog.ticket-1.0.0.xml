@@ -5,7 +5,7 @@
     <changeSet id="ticket-1.0.0" author="Janus Chung" failOnError="true">
         <comment>create table to store ticket information </comment>
         <createTable tableName="TICKET" schemaName="support_system">
-            <column name="ID" type="BIGINT" remarks="Primary key">
+            <column autoIncrement="true" name="ID" type="BIGINT" remarks="Primary key">
                 <constraints primaryKey="true"/>
             </column>
             <column name="CREATED_ON" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP" remarks="When the entry was created">
