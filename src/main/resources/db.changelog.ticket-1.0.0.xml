@@ -32,7 +32,7 @@
             <column name="STATUS" type="ENUM('NEW', 'OPEN', 'CLOSED', 'ESCALATE')" remarks="Status, default is New" defaultValue="NEW">
                 <constraints nullable="false"/>
             </column>
-            <column name="RESOLUTION" type="ENUM('UNRESOLVED', 'RESOLVED', 'WILL NOT DO', 'DUPLICATE')" remarks="Resolution, default as UNRESOLVED" defaultValue="UNRESOLVED">
+            <column name="RESOLUTION" type="ENUM('UNRESOLVED', 'RESOLVED', 'WILL_NOT_DO', 'DUPLICATE')" remarks="Resolution, default as UNRESOLVED" defaultValue="UNRESOLVED">
                 <constraints nullable="false"/>
             </column>
 
