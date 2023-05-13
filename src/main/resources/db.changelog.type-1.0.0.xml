@@ -1,0 +1,14 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="type-1.0.0" author="Janus Chung" failOnError="true">
+        <comment>create enums </comment>
+        <sql>CREATE TYPE support_system.TICKET_STATUS AS ENUM ('NEW', 'OPEN', 'CLOSED', 'ESCALATE');
+             CREATE TYPE support_system.TICKET_RESOLUTION AS ENUM ('UNRESOLVED', 'RESOLVED', 'WILL_NOT_DO', 'DUPLICATE');</sql>
+        <rollback>
+            <sql>DROP TYPE support_system.TICKET_STATUS;
+                 DROP TYPE support_system.TICKET_RESOLUTION;</sql>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

@@ -12,16 +12,16 @@
                 <constraints nullable="true" />
             </column>
             <column name="CREATED_BY" type="BIGINT" remarks="Id of the user that created the entry">
-                <constraints nullable="false" foreignKeyName="FK_TICKET_CREATED_BY" references="USER(ID)"/>
+                <constraints nullable="false" foreignKeyName="FK_TICKET_CREATED_BY" references='"support_system"."USER"(ID)'/>
             </column>
             <column name="MODIFIED_BY" type="BIGINT" remarks="Id of the user that last modified the record">
-                <constraints nullable="false" foreignKeyName="FK_TICKET_MODIFIED_BY" references="USER(ID)"/>
+                <constraints nullable="false" foreignKeyName="FK_TICKET_MODIFIED_BY" references='"support_system"."USER"(ID)'/>
             </column>
             <column name="LAST_MODIFIED" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP" remarks="When the entry was modified">
                 <constraints nullable="true"/>
             </column>
             <column name="ASSIGNEE_ID" type="BIGINT" remarks="Id of the user that is assigned to">
-                <constraints nullable="false" foreignKeyName="FK_TICKET_ASSIGNEE_ID" references="USER(ID)"/>
+                <constraints nullable="false" foreignKeyName="FK_TICKET_ASSIGNEE_ID" references='"support_system"."USER"(ID)'/>
             </column>
             <column name="CLIENT_ID" type="BIGINT" remarks="Id of the client">
                 <constraints nullable="false"/>
@@ -29,10 +29,10 @@
             <column name="DESCRIPTION" type="VARCHAR(1000)" remarks="Ticket description">
                 <constraints nullable="true"/>
             </column>
-            <column name="STATUS" type="ENUM('NEW', 'OPEN', 'CLOSED', 'ESCALATE')" remarks="Status, default is New" defaultValue="NEW">
+            <column name="STATUS" type="support_system.TICKET_STATUS" remarks="Status, default is New" defaultValue="NEW">
                 <constraints nullable="false"/>
             </column>
-            <column name="RESOLUTION" type="ENUM('UNRESOLVED', 'RESOLVED', 'WILL_NOT_DO', 'DUPLICATE')" remarks="Resolution, default as UNRESOLVED" defaultValue="UNRESOLVED">
+            <column name="RESOLUTION" type="support_system.TICKET_RESOLUTION" remarks="Resolution, default as UNRESOLVED" defaultValue="UNRESOLVED">
                 <constraints nullable="false"/>
             </column>
 
