@@ -28,7 +28,8 @@ jobs:
         java-version: '17'
         distribution: 'corretto'
         cache: maven
-    - uses: isbang/compose-action@v1.4.1
+    - name: Bring up Postgres DB with docker-compose
+      uses: isbang/compose-action@v1.4.1
       with:
         compose-file: "./docker-compose.yml"
     - name: Build with Maven
