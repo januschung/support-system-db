@@ -1,0 +1,23 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.22.xsd">
+
+    <changeSet id="insert-admin-app_user-1.0.0" author="Janus Chung" failOnError="true">
+        <comment>insert admin user</comment>
+        <insert tableName="APP_USER">
+            <column name="ID" type="BIGINT" value="-1" />
+            <column name="CREATED_BY" value="-1" />
+            <column name="MODIFIED_BY" value="-1" />
+            <column name="USERNAME" value="admin" />
+            <column name="PASSWORD" value="admin" />
+            <column name="EMAIL" value="admin@admin.com" />
+            <column name="FIRST_NAME" value="admin" />
+            <column name="LAST_NAME" value="admin" />
+        </insert>
+        <rollback>
+            <delete tableName="APP_USER">
+                <where>ID="-1"</where>
+            </delete>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
