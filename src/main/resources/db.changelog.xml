@@ -3,8 +3,8 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
     	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.22.xsd">
-    <include file="db.changelog.app_user-1.0.0.xml" relativeToChangelogFile="true" />
-    <include file="db.changelog.type-1.0.0.xml" relativeToChangelogFile="true" />
-    <include file="db.changelog.ticket-1.0.0.xml" relativeToChangelogFile="true" />
-    <include file="db.changelog.insert_admin_app_user-1.0.0.xml" relativeToChangelogFile="true" />
+    <include file="db.changelog.app_user-0.0.1.xml" relativeToChangelogFile="true" />
+    <include file="db.changelog.type-0.0.1.xml" relativeToChangelogFile="true" />
+    <include file="db.changelog.ticket-0.0.1.xml" relativeToChangelogFile="true" />
+    <include file="db.changelog.insert_admin_app_user-0.0.1.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>
