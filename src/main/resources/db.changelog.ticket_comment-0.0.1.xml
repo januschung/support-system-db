@@ -1,0 +1,48 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.22.xsd">
+
+    <changeSet id="ticket_comment-0.0.1" author="Janus Chung" failOnError="true">
+        <comment>Create table to store ticket comment information</comment>
+        <createTable tableName="ticket_comment">
+            <column autoIncrement="true" name="id" type="bigint" remarks="Primary key">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="ticket_id" type="bigint" remarks="Ticket ID associated with the comment">
+                <constraints nullable="false" foreignKeyName="fk_ticket_comment_ticket_id" references="ticket(id)"/>
+            </column>
+            <column name="created_on" type="timestamp" defaultValueComputed="current_timestamp" remarks="Creation timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="bigint" remarks="ID of the user who created the comment">
+                <constraints nullable="false" foreignKeyName="fk_ticket_comment_created_by" references="app_user(id)"/>
+            </column>
+            <column name="modified_by" type="bigint" remarks="ID of the user who last modified the comment">
+                <constraints nullable="false" foreignKeyName="fk_ticket_comment_modified_by" references="app_user(id)"/>
+            </column>
+            <column name="last_modified" type="timestamp" defaultValueComputed="current_timestamp" remarks="Last modification timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)" remarks="Comment description">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <createIndex tableName="ticket_comment" indexName="idx_ticket_id">
+            <column name="ticket_id"/>
+        </createIndex>
+        <createIndex tableName="ticket_comment" indexName="idx_created_by">
+            <column name="created_by"/>
+        </createIndex>
+        <createIndex tableName="ticket_comment" indexName="idx_modified_by">
+            <column name="modified_by"/>
+        </createIndex>
+
+        <rollback>
+            <dropIndex tableName="ticket_comment" indexName="idx_ticket_id"/>
+            <dropIndex tableName="ticket_comment" indexName="idx_created_by"/>
+            <dropIndex tableName="ticket_comment" indexName="idx_modified_by"/>
+            <dropTable tableName="ticket_comment"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

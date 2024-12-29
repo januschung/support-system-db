@@ -3,48 +3,60 @@
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.22.xsd">
 
     <changeSet id="app_user-0.0.1" author="Janus Chung" failOnError="true">
-        <comment>create table to store app user information </comment>
+        <comment>Create table to store app user information</comment>
+        
         <createTable tableName="app_user">
             <column autoIncrement="true" name="id" type="bigint" remarks="Primary key">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="created_on" type="timestamp" defaultValueComputed="current_timestamp" remarks="When the entry was created">
-                <constraints nullable="true"/>
+                <constraints nullable="false"/>
             </column>
             <column name="created_by" type="bigint" remarks="Id of the app user that created the entry">
-                <constraints nullable="false"/>
+                <constraints nullable="true" foreignKeyName="fk_app_user_created_by" references="app_user(id)"/>
             </column>
             <column name="modified_by" type="bigint" remarks="Id of the app user that last modified the record">
+                <constraints nullable="true" foreignKeyName="fk_app_user_modified_by" references="app_user(id)"/>
             </column>
             <column name="last_modified" type="timestamp" defaultValueComputed="current_timestamp" remarks="When the entry was modified">
-                <constraints nullable="true"/>
-            </column>
-            <column name="username" type="varchar">
                 <constraints nullable="false"/>
             </column>
-            <column name="password" type="varchar" remarks="Password in hash format">
+            <column name="username" type="varchar(50)" remarks="Unique username">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="varchar(255)" remarks="Password in hash format">
                 <constraints nullable="false"/>
             </column>
-            <column name="email" type="varchar" remarks="App User email">
+            <column name="email" type="varchar(255)" remarks="App user email">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="first_name" type="varchar(100)" remarks="First name">
+                <constraints nullable="true"/>
+            </column>
+            <column name="last_name" type="varchar(100)" remarks="Last name">
+                <constraints nullable="true"/>
+            </column>
+            <column name="phone" type="varchar(20)" remarks="Phone number">
+                <constraints nullable="true"/>
+            </column>
+            <column name="enable_fl" type="BOOLEAN" remarks="App user enable status, default as true" defaultValue="true">
                 <constraints nullable="false"/>
             </column>
-            <column name="first_name" type="varchar">
-                <constraints nullable="true"/>
-            </column>
-            <column name="last_name" type="varchar">
-                <constraints nullable="true"/>
-            </column>
-            <column name="phone" type="varchar" remarks="Phone number">
-                <constraints nullable="true"/>
-            </column>
-            <column name="enable_fl" type="BOOLEAN" remarks="App User enable status, default as 1" defaultValue="1">
-                <constraints nullable="false"/>
-            </column>
-            <column name="last_login" type="timestamp" defaultValueComputed="current_timestamp" remarks="When the entry was last logged in">
+            <column name="last_login" type="timestamp" remarks="When the entry was last logged in">
                 <constraints nullable="true"/>
             </column>
         </createTable>
+
+        <createIndex tableName="app_user" indexName="idx_app_user_username">
+            <column name="username"/>
+        </createIndex>
+        <createIndex tableName="app_user" indexName="idx_app_user_email">
+            <column name="email"/>
+        </createIndex>
+
         <rollback>
+            <dropIndex tableName="app_user" indexName="idx_app_user_username"/>
+            <dropIndex tableName="app_user" indexName="idx_app_user_email"/>
             <dropTable tableName="app_user"/>
         </rollback>
     </changeSet>
