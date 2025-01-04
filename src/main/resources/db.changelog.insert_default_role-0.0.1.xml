@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.22.xsd">
+
+    <changeSet id="role-and-user-role-insert-0.0.1" author="Janus Chung" failOnError="true">
+        <comment>Insert default roles and user-role associations</comment>
+
+        <insert tableName="role">
+            <column name="name" value="ADMIN"/>
+        </insert>
+        <insert tableName="role">
+            <column name="name" value="USER"/>
+        </insert>
+
+        <insert tableName="app_user_role">
+            <column name="app_user_id" value="1"/>
+            <column name="role_id" value="1"/>
+        </insert>
+        <insert tableName="app_user_role">
+            <column name="app_user_id" value="1"/>
+            <column name="role_id" value="2"/>
+        </insert>
+
+        <rollback>
+          <delete tableName="app_user_role">
+              <where>app_user_id = 1</where>
+          </delete>
+          
+          <delete tableName="role">
+              <where>name IN ('ADMIN', 'USER')</where>
+          </delete>
+      </rollback>
+
+    </changeSet>
+
+</databaseChangeLog>

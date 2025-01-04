@@ -39,7 +39,7 @@
             <column name="phone" type="varchar(20)" remarks="Phone number">
                 <constraints nullable="true"/>
             </column>
-            <column name="enable_fl" type="BOOLEAN" remarks="App user enable status, default as true" defaultValue="true">
+            <column name="enabled" type="BOOLEAN" remarks="App user enable status, default as true" defaultValue="true">
                 <constraints nullable="false"/>
             </column>
             <column name="last_login" type="timestamp" remarks="When the entry was last logged in">
