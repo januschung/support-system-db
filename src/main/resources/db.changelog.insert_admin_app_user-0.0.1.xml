@@ -5,9 +5,9 @@
     <changeSet id="insert-admin-app_user-0.0.1" author="Janus Chung" failOnError="true">
         <comment>insert admin user</comment>
         <insert tableName="app_user">
-            <column name="id" type="bigint" value="-1" />
-            <column name="created_by" value="-1" />
-            <column name="modified_by" value="-1" />
+            <column name="id" type="bigint" value="1" />
+            <column name="created_by" value="1" />
+            <column name="modified_by" value="1" />
             <column name="username" value="admin" />
             <column name="password" value="admin" />
             <column name="email" value="admin@admin.com" />
@@ -16,7 +16,7 @@
         </insert>
         <rollback>
             <delete tableName="app_user">
-                <where>id="-1"</where>
+                <where>id="1"</where>
             </delete>
         </rollback>
     </changeSet>

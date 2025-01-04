@@ -8,4 +8,7 @@
     <include file="db.changelog.ticket-0.0.1.xml" relativeToChangelogFile="true" />
     <include file="db.changelog.insert_admin_app_user-0.0.1.xml" relativeToChangelogFile="true" />
     <include file="db.changelog.ticket_comment-0.0.1.xml" relativeToChangelogFile="true" />
+    <include file="db.changelog.role-0.0.1.xml" relativeToChangelogFile="true" />
+    <include file="db.changelog.app_user_role-0.0.1.xml" relativeToChangelogFile="true" />
+    <include file="db.changelog.insert_default_role-0.0.1.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>
